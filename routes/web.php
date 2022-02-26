@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\TransaksiController;
 
 
 /*
@@ -40,9 +41,19 @@ Route::group(['middleware'=>['auth','CekRole:admin']], function(){
 //manager
 Route::group(['middleware'=>['auth','CekRole:manager']], function(){
     Route::get('indexmanager', [ManagerController::class, 'index'])->name('indexmanager');
+    Route::get('laporanmanager', [ManagerController::class, 'laporan'])->name('laporanmanager');
+    Route::get('carimanager', [ManagerController::class, 'cari'])->name('carimanager');
     Route::get('createmanager', [ManagerController::class, 'create'])->name('createmanager');
     Route::post('storemanager', [ManagerController::class, 'store'])->name('storemanager');
     Route::get('destroymanager/{id}', [ManagerController::class, 'destroy'])->name('destroymanager');
     Route::get('editmanager/{id}', [ManagerController::class, 'edit'])->name('editmanager');
     Route::put('updatemanager/{id}', [ManagerController::class, 'update'])->name('updatemanager');
+});
+
+//kasir
+Route::group(['middleware'=>['auth','CekRole:kasir']], function(){
+    Route::get('indexkasir', [TransaksiController::class, 'index'])->name('indexkasir');
+    Route::get('createkasir', [TransaksiController::class, 'create'])->name('createkasir');
+    Route::post('storekasir', [TransaksiController::class, 'store'])->name('storekasir');
+
 });

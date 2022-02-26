@@ -44,19 +44,26 @@
             <div class="page-breadcrumb bg-white">
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Data Menu</h4>
-                    </div>
-                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                        <div class="d-flex flex-row-reverse bd-highlight">
-                            <a href="{{ route('createmanager') }}" class="btn btn-secondary">
-                            <i class="fa-solid fa-plus"></i>
-                            <span class="hide-menu">Add Menu</span>
-                            </a>
-                        </div>
+                        <h4 class="page-title">Laporan</h4>
                     </div>
                 </div>
                 <!-- /.col-lg-12 -->
-                
+                <form action="{{url('carimanager')}}" method="get">
+                        @csrf
+                        <div class="form-group row">
+                            <label for="from" class="col-form-label col-sm-2">Date From:</label>
+                            <div class="col-sm-3">
+                                <input type="date" class="form-control input-sm w-100" id="from" name="from"  required>
+                            </div>
+                            <label for="to" class="col-form-label col-sm-2">Date to:</label>
+                            <div class="col-sm-3">
+                                <input type="date" class="form-control input-sm w-100" id="to" name="to" required>
+                            </div>
+                            <div class="col-sm-2">
+                            <button type="submit" class="btn btn-primary mb-1"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
             </div>
             @if ($message = Session::get('success'))
             <div class="alert alert-success">
@@ -83,23 +90,23 @@
                 <div class="row">
                     <table class="table table-hover">
                         <tr>
-                            <th>No</th>
+                            <th>Nama Pelanggan</th>
                             <th>Nama Menu</th>
-                            <th>Harga</th>
-                            <th>Deskirpsi</th>
-                            <th>Ketersediaan</th>
-                            <th>Action</th>
+                            <th>Jumlah</th>
+                            <th>Total Harga</th>
+                            <th>Nama Pegawai</th>
+                            <th>Tanggal</th>
                         </tr>
-                        @foreach($menu as $u)
+                        @foreach($data as $u)
                         <tr>
-                        <td>{{$loop->iteration}}</td>
+                        <td>{{$u->nama_pelanggan}}</td>
                         <td>{{$u->nama_menu}}</td>
-                        <td>{{$u->harga}}</td>
-                        <td>{{$u->deskripsi}}</td>
-                        <td>{{$u->ketersediaan}}</td>
+                        <td>{{$u->jumlah}}</td>
+                        <td>{{$u->total_harga}}</td>
+                        <td>{{$u->nama_pegawai}}</td>
                         <td>
-                            <a href="editmanager/{{$u->id}}" class="btn btn-warning">Edit</a>
-                            <a href="destroymanager/{{$u->id}}" class="btn btn-danger">Delete</a>
+                            {{$u->tanggal}}
+                            <!-- <a href="createkasir" class="btn btn-warning">Pesan</a> -->
                         </td>
                         </tr>
                         @endforeach

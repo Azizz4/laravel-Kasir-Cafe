@@ -82,7 +82,7 @@
                         </tr>
                         @foreach($user as $u)
                         <tr>
-                        <td>{{$i++}}</td>
+                        <td>{{$loop->iteration}}</td>
                         <td>{{$u->name}}</td>
                         <td>{{$u->username}}</td>
                         <td>{{$u->role}}</td>

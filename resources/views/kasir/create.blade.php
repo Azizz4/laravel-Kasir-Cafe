@@ -44,26 +44,12 @@
             <div class="page-breadcrumb bg-white">
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Data Menu</h4>
-                    </div>
-                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                        <div class="d-flex flex-row-reverse bd-highlight">
-                            <a href="{{ route('createmanager') }}" class="btn btn-secondary">
-                            <i class="fa-solid fa-plus"></i>
-                            <span class="hide-menu">Add Menu</span>
-                            </a>
-                        </div>
+                        <h4 class="page-title">Tambah Menu</h4>
                     </div>
                 </div>
                 <!-- /.col-lg-12 -->
-                
             </div>
-            @if ($message = Session::get('success'))
-            <div class="alert alert-success">
-            <p>{{ $message }}</p>
-            </div>
-            @endif
-            @if ($message = Session::get('error'))
+            @if ($message = Session::get('Kureng'))
             <div class="alert alert-danger">
             <p>{{ $message }}</p>
             </div>
@@ -76,34 +62,37 @@
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">
-                
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
                 <div class="row">
-                    <table class="table table-hover">
-                        <tr>
-                            <th>No</th>
-                            <th>Nama Menu</th>
-                            <th>Harga</th>
-                            <th>Deskirpsi</th>
-                            <th>Ketersediaan</th>
-                            <th>Action</th>
-                        </tr>
-                        @foreach($menu as $u)
-                        <tr>
-                        <td>{{$loop->iteration}}</td>
-                        <td>{{$u->nama_menu}}</td>
-                        <td>{{$u->harga}}</td>
-                        <td>{{$u->deskripsi}}</td>
-                        <td>{{$u->ketersediaan}}</td>
-                        <td>
-                            <a href="editmanager/{{$u->id}}" class="btn btn-warning">Edit</a>
-                            <a href="destroymanager/{{$u->id}}" class="btn btn-danger">Delete</a>
-                        </td>
-                        </tr>
-                        @endforeach
-                    </table>
+                    <form action="{{ route('storekasir')}}" method="post">
+                        @csrf
+                        
+                        <fieldset>
+                        <div class="mb-3">
+                            <label for="nama" class="form-label">Nama Pelanggan</label>
+                            <input type="text" id="nama" class="form-control" name="nama_pelanggan">
+                            <div class="mb-3">
+                            <label for="menu" class="form-label">Nama Menu</label>
+                            <select id="menu" class="form-select" name="nama_menu">
+                                @foreach ($data as $d)
+                                    @if($d->ketersediaan>0)
+                                <option value="{{$d->nama_menu}}">{{$d->nama_menu}}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                            </div>
+                            <div class="mb-3">
+                            <label for="jumlah" class="form-label">Jumlah</label>
+                            <input type="number" id="jumlah" class="form-control" name="jumlah">
+                            </div>
+                            <label for="pegawai" class="form-label">Nama Pegawai</label>
+                            <input type="text" id="pegawai" class="form-control" name="nama_pegawai">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </fieldset>
+                    </form>
                 </div>
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->

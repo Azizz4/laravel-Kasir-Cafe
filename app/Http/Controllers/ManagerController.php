@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Menu;
+use App\Models\Transaksi;
 
 class ManagerController extends Controller
 {
@@ -117,5 +118,19 @@ class ManagerController extends Controller
         }else{
             return back()->with('error','Gagal bre');
         }
+    }
+
+    public function laporan(Request $request){
+        $data = Transaksi::paginate(7);
+        return view('manager.laporan', compact('data'));
+        
+    }
+    public function cari(Request $request){
+        $from = $request->from;
+        $to = $request->to;
+        $data = Transaksi::whereBetween('tanggal',array($from, $to))->paginate(10);
+
+        return view('manager.laporan', compact('data'));
+        
     }
 }

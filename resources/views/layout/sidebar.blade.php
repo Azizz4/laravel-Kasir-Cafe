@@ -17,7 +17,7 @@
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('indexadmin')}}"
                                 aria-expanded="false">
                                 <i class="fa-solid fa-user-bounty-hunter"></i>
-                                <span class="hide-menu">Data</span>
+                                <span class="hide-menu">Data User</span>
                             </a>
                         </li>
                         <li class="sidebar-item pt-2">
@@ -33,11 +33,34 @@
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('indexmanager')}}"
                                 aria-expanded="false">
                                 <i class="fa-solid fa-user-bounty-hunter"></i>
-                                <span class="hide-menu">Kuntul</span>
+                                <span class="hide-menu">Data Menu</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item pt-2">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('laporanmanager')}}"
+                                aria-expanded="false">
+                                <i class="fa-solid fa-user-bounty-hunter"></i>
+                                <span class="hide-menu">Laporan</span>
                             </a>
                         </li>
                         @endif
 
+                        @if (auth()->user()->role=="kasir")
+                        <li class="sidebar-item pt-2">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('indexkasir')}}"
+                                aria-expanded="false">
+                                <i class="fa-solid fa-user-bounty-hunter"></i>
+                                <span class="hide-menu">Data Transaksi</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item pt-2">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('createkasir')}}"
+                                aria-expanded="false">
+                                <i class="fa-solid fa-user-bounty-hunter"></i>
+                                <span class="hide-menu">Pesan</span>
+                            </a>
+                        </li>
+                        @endif
 
 
                         <li class="sidebar-item pt-2">

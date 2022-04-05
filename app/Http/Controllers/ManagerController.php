@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Menu;
 use App\Models\Transaksi;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Str;
 
 class ManagerController extends Controller
 {
@@ -53,7 +55,7 @@ class ManagerController extends Controller
         ]);
         if($store){
             return redirect()->route('indexmanager')
-                    ->with('success','Berhasil nenden');
+                    ->with('success','Berhasil bre');
         }else{
             return back()->with('error','Gagal bre');
         }
@@ -132,5 +134,15 @@ class ManagerController extends Controller
 
         return view('manager.laporan', compact('data'));
         
+    }
+
+    public function laporanpdf(){
+        $laporan = Transaksi::all();
+        $data = [
+            'laporan'=>$laporan, 
+        ];
+
+        $pdf = PDF::loadView('pdf.transaksi-pdf', $data);
+        return $pdf->download(Str::random(7) . '.pdf');
     }
 }

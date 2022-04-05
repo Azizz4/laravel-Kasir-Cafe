@@ -6,9 +6,9 @@
                     <ul id="sidebarnav">
                         <!-- User Profile-->
                         <li class="sidebar-item pt-2">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dashboard.html"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('dashboard')}}"
                                 aria-expanded="false">
-                                <i class="far fa-clock" aria-hidden="true"></i>
+                                <i class="fa-solid fa-user-bounty-hunter"></i>
                                 <span class="hide-menu">Dashboard</span>
                             </a>
                         </li>
@@ -40,7 +40,7 @@
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('laporanmanager')}}"
                                 aria-expanded="false">
                                 <i class="fa-solid fa-user-bounty-hunter"></i>
-                                <span class="hide-menu">Laporan</span>
+                                <span class="hide-menu">Hasil Transaksi</span>
                             </a>
                         </li>
                         @endif

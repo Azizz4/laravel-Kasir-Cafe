@@ -41,7 +41,8 @@ Route::group(['middleware'=>['auth','CekRole:admin']], function(){
 //manager
 Route::group(['middleware'=>['auth','CekRole:manager']], function(){
     Route::get('indexmanager', [ManagerController::class, 'index'])->name('indexmanager');
-    Route::get('laporanmanager', [ManagerController::class, 'laporan'])->name('laporanmanager');
+    Route::get('laporanpdf',[ManagerController::class, 'laporanpdf'])->name('laporanpdf');
+    Route::get('laporanmanager',[ManagerController::class, 'laporan'])->name('laporanmanager');
     Route::get('carimanager', [ManagerController::class, 'cari'])->name('carimanager');
     Route::get('createmanager', [ManagerController::class, 'create'])->name('createmanager');
     Route::post('storemanager', [ManagerController::class, 'store'])->name('storemanager');

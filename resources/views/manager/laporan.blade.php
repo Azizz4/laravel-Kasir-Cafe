@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
@@ -64,6 +65,14 @@
                             </div>
                         </div>
                     </form>
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                        <div class="d-flex flex-row-reverse bd-highlight">
+                            <a href="{{ route('laporanpdf') }}" class="btn btn-secondary">
+                            <i class="fa-solid fa-plus"></i>
+                            <span class="hide-menu">Laporan</span>
+                            </a>
+                        </div>
+                    </div>
             </div>
             @if ($message = Session::get('success'))
             <div class="alert alert-success">
